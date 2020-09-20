@@ -22,7 +22,10 @@ const App = () => {
     return '';
   });
   const [query, setQuery] = useState(() => {
-    return 'Pacific';
+    return '';
+  });  
+  const [msg, setMsg] = useState(() => {
+    return '';
   });
 
   useEffect(() => {
@@ -48,6 +51,10 @@ const App = () => {
 
   const getSearch = e => {
     e.preventDefault(); //the page will refresh because a component has changes, this line will prevent refresh
+    if(search === ''){
+      setMsg("")
+      return
+    }
     setQuery(search);
     setSearch('');
   }
@@ -57,7 +64,7 @@ const App = () => {
       <h1 className = 'Title' ><b>Find your movies</b></h1>
       <Form className = "search-form" onSubmit = {getSearch}>
         <Form.Group controlId="formSearchWord">
-          <Form.Control className = "search-bar" type="text" placeholder="Enter Movie Name" value = {search} onChange = {updateSearch}/>
+          <Form.Control className = "search-bar" type="text" placeholder="Enter Movie Name" value = {search} onChange = {updateSearch} required/>
         </Form.Group>
         <Button className = "search-button" type = 'submit' size = 'sm'>
           Search
