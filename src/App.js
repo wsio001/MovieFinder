@@ -11,10 +11,9 @@ import Movie from './Movie.js';
 import './App.css';
 
 const App = () => {
+
   const API_KEY = key
-
   const firstRun = useRef(true);
-
   const [movies, setMovies] = useState(()=>{
     return [];
   });
@@ -33,7 +32,6 @@ const App = () => {
       firstRun.current = false;
       return;
     }
-
     getMovies();
   }, [query]);
 
@@ -41,6 +39,11 @@ const App = () => {
     console.log(query)
     const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`);
     const data = await response.json();
+    if(data.total_results === 0){
+      setMsg("Sorry, we cannot find any results.")
+      return;
+    }
+
     setMovies(data.results);
     console.log(data.results)
   }
@@ -51,10 +54,6 @@ const App = () => {
 
   const getSearch = e => {
     e.preventDefault(); //the page will refresh because a component has changes, this line will prevent refresh
-    if(search === ''){
-      setMsg("")
-      return
-    }
     setQuery(search);
     setSearch('');
   }
@@ -70,6 +69,11 @@ const App = () => {
           Search
         </Button>
       </Form>
+      {
+        msg.length>0?
+        msg:
+        null
+      }
       {movies.map(movie =>(
         <Movie 
         key = {movie.id}
