@@ -12,7 +12,7 @@ import './App.css';
 
 const App = () => {
 
-  const API_KEY = key
+  const API_KEY = key //you can either insert your key here as a string, or make a key.js and type export let key = "INSERTY YOUR KEY";
   const firstRun = useRef(true);
   const [movies, setMovies] = useState(()=>{
     return [];
