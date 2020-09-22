@@ -22,9 +22,9 @@ const Movie = ({img, title, releaeDate,desc}) => {
             <img className = "poster" src = {imgLink} alt = "" />
             <h3>Title: {title}</h3>
             <p>Release Date: {releaeDate}</p>
-            {!readMore && <p onClick = {handleReadMore} ><u>Read more</u></p>}
+            {!readMore && <p className = "Read-Toggle" onClick = {handleReadMore} ><u>Read more</u></p>}
             {readMore && <p>Description: {desc}</p>}
-            {readMore && <p onClick = {handleReadMore} ><u>Read less</u></p>}
+            {readMore && <p className = "Read-Toggle" onClick = {handleReadMore} ><u>Read less</u></p>}
         </div>
     )
 }
