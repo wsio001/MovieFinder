@@ -1,9 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-//import Row from 'react-bootstrap/Row'
-//import Col from 'react-bootstrap/Col'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import Pagination from '@material-ui/lab/Pagination'
 import {key} from './key.js';
 import Movie from './Movie.js';
 
@@ -14,6 +11,7 @@ const App = () => {
 
   const API_KEY = key //you can either insert your key here as a string, or make a key.js and type export let key = "INSERTY YOUR KEY";
   const firstRun = useRef(true);
+
   const [movies, setMovies] = useState(()=>{
     return [];
   });
@@ -26,6 +24,15 @@ const App = () => {
   const [msg, setMsg] = useState(() => {
     return '';
   });
+  const [activePg, setActivePg] = useState(() => {
+    return 1;
+  });
+  const [totalPg, setTotalPg] = useState(() => {
+    return 1;
+  });
+  const [showPagination, setShowPagination] = useState(() => {
+    return false;
+  }); 
 
   useEffect(() => {
     if(firstRun.current){
@@ -33,42 +40,60 @@ const App = () => {
       return;
     }
     getMovies();
-  }, [query]);
+  }, [query, activePg]);
+
+  const handlePagination = (event, value) => {
+    console.log(value)
+    console.log("handle page")
+    setActivePg(value)
+  }
+  
 
   const getMovies = async() => {
     console.log(query)
-    const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`);
+    console.log(activePg)
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}&page=${activePg}&include_adult=false`);
     const data = await response.json();
+    console.log(activePg);
+
     if(data.total_results === 0){
       setMsg("Sorry, we cannot find any results.")
       return;
     }
 
+    console.log(data)
     setMovies(data.results);
-    console.log(data.results)
+    setTotalPg(data.total_pages);
+    setShowPagination(true);
+    console.log(data.results);
   }
 
   const updateSearch = e => {
-    setSearch(e.target.value)
+    console.log(e.target.value)
+    setSearch(e.target.value);
   }
 
   const getSearch = e => {
     e.preventDefault(); //the page will refresh because a component has changes, this line will prevent refresh
+    if (search === ''){
+      setMsg("Please enter a keyword")
+      return;
+    }
     setQuery(search);
+    setActivePg(1);
     setSearch('');
   }
 
   return(
     <div className = "App">
       <h1 className = 'Title' ><b>Find your movies</b></h1>
-      <Form className = "search-form" onSubmit = {getSearch}>
-        <Form.Group controlId="formSearchWord">
-          <Form.Control className = "search-bar" type="text" placeholder="Enter Movie Name" value = {search} onChange = {updateSearch} required/>
-        </Form.Group>
-        <Button className = "search-button" type = 'submit' size = 'sm'>
+      <form className = "search-form" onSubmit = {getSearch}>
+          <input className = "search-bar" type="text" placeholder="Enter Movie Name" value = {search} onChange = {updateSearch}/>
+        <button className = "search-button" type = 'submit' size = 'sm'>
           Search
-        </Button>
-      </Form>
+        </button>
+      </form>
+
       {
         msg.length>0?
         msg:
@@ -84,6 +109,17 @@ const App = () => {
         />
       ))}
 
+
+     {showPagination && <Pagination count={totalPg} 
+      shape="rounded" 
+      showFirstButton 
+      showLastButton
+      siblingCount={1}
+      boundaryCount={1}
+      defaultPage={1}
+      onChange={handlePagination}
+      page = {activePg}
+      />}
     </div>
   );
 };
