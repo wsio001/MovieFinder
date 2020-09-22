@@ -1,10 +1,10 @@
 ## Instruction
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This application needs API key to run. Find out more here
+This application needs API key to run. Find out more here. You will need an account to get an api key
 https://www.themoviedb.org/documentation/api
 
-After getting an API key, download the app and then either change the value of the `API_KEY` variable in App.js to personal Api key or create a file name key.js in `/src` and put `export let key = "YOUR API KEY"`.
+After getting an API key, download the app and then create a file name key.js in `/src` and put `export let key = "YOUR API KEY"`.
 
 
 Simply run `npm install` then `npm start` in this directory will start the application.
