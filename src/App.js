@@ -1,12 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-<<<<<<< HEAD
-=======
-//import Row from 'react-bootstrap/Row'
-//import Col from 'react-bootstrap/Col'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
->>>>>>> 9265542c8923d72b74c407b2a6a7f284b592dd3c
 import Pagination from '@material-ui/lab/Pagination'
 import {key} from './key.js';
 import Movie from './Movie.js';
@@ -99,18 +91,10 @@ const App = () => {
   return(
     <div className = "App">
       <h1 className = 'Title' ><b>Find your movies</b></h1>
-<<<<<<< HEAD
+
       <form className = "search-form" onSubmit = {getSearch}>
           <input className = "search-bar" type="text" placeholder="Enter Movie Name" value = {search} onChange = {updateSearch}/>
         <button className = "search-button" type = 'submit' size = 'sm'>
-=======
-      <Form className = "search-form" onSubmit = {getSearch}>
-        <Form.Group controlId="formSearchWord">
-          <Form.Control className = "search-bar" type="text" placeholder="Enter Movie Name" value = {search} onChange = {updateSearch}/>
-        </Form.Group>
-        <Button className = "search-button" type = 'submit' size = 'sm'>
->>>>>>> 9265542c8923d72b74c407b2a6a7f284b592dd3c
-          Search
         </button>
       </form>
 
