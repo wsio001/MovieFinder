@@ -1,3 +1,12 @@
 .poster{
-    width:500px;
+    width:450px;
+}
+
+.Read-Toggle{
+    color:gray;
+}
+
+.Read-Toggle:hover{
+    color: black;
+    cursor: pointer;
 }
