@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Pagination from '@material-ui/lab/Pagination'
+import Grid from '@material-ui/core/Grid'
 import {key} from './key.js';
 import Movie from './Movie.js';
 
@@ -93,8 +94,9 @@ const App = () => {
       <h1 className = 'Title' ><b>Find your movies</b></h1>
 
       <form className = "search-form" onSubmit = {getSearch}>
-          <input className = "search-bar" type="text" placeholder="Enter Movie Name" value = {search} onChange = {updateSearch}/>
-        <button className = "search-button" type = 'submit' size = 'sm'>
+          <input className = "search-bar" type="text" placeholder="Enter Movie Name" value = {search} onChange = {updateSearch}/> 
+        <button className = "search-button" type = 'submit'>
+          Search
         </button>
       </form>
 
@@ -103,8 +105,9 @@ const App = () => {
         msg:
         null
       }
+      <div className = "Movies">
       {movies.map(movie =>(
-        <Movie 
+        <Movie
         key = {movie.id}
         img = {movie.poster_path}
         title = {movie.title}
@@ -112,9 +115,10 @@ const App = () => {
         desc = {movie.overview}
         />
       ))}
+      </div>
 
-
-     {showPagination && <Pagination count={totalPg} 
+     {showPagination && <Grid className = "Pagination" container justify = "center"> 
+      <Pagination count={totalPg} 
       shape="rounded" 
       showFirstButton 
       showLastButton
@@ -123,7 +127,8 @@ const App = () => {
       defaultPage={1}
       onChange={handlePagination}
       page = {activePg}
-      />}
+      />
+      </Grid>}
     </div>
   );
 };
