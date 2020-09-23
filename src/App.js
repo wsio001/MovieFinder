@@ -105,6 +105,21 @@ const App = () => {
         msg:
         null
       }
+
+      {showPagination && <Grid className = "Pagination" container justify = "center"> 
+      <Pagination count={totalPg} 
+      shape="rounded" 
+      showFirstButton 
+      showLastButton
+      siblingCount={1}
+      boundaryCount={1}
+      defaultPage={1}
+      onChange={handlePagination}
+      page = {activePg}
+      size="large"
+      />
+      </Grid>}
+
       <div className = "Movies">
       {movies.map(movie =>(
         <Movie
