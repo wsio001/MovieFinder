@@ -127,6 +127,7 @@ const App = () => {
       defaultPage={1}
       onChange={handlePagination}
       page = {activePg}
+      size="large"
       />
       </Grid>}
     </div>
