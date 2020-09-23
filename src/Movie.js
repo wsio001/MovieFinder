@@ -21,10 +21,10 @@ const Movie = ({img, title, releaeDate,desc}) => {
     return(
         <div className = "Movie">
             <img className = "Poster" src = {imgLink} alt = "" />
-            <h3>Title: {title}</h3>
+            <h3>{title}</h3>
             <p>Release Date: {releaeDate}</p>
             {!readMore && <p className = "Read-Toggle" onClick = {handleReadMore} ><u>Read more</u></p>}
-            {readMore && <p>Description: {desc}</p>}
+            {readMore && <p className = "Desc" ><b>Description:</b> {desc}</p>}
             {readMore && <p className = "Read-Toggle" onClick = {handleReadMore} ><u>Read less</u></p>}
         </div>
     )

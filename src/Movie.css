@@ -22,3 +22,8 @@
     align-items: center;
     min-width: 40%;
 }
+
+.Desc{
+    padding-left: 40%;
+    padding-right: 40%;
+}
