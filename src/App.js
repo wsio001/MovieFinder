@@ -42,11 +42,19 @@ const App = () => {
     getMovies();
   }, [query, activePg]);
 
-  const handlePagination = (event, value) => {
-    console.log(value)
-    console.log("handle page")
-    setActivePg(value)
+  function scrollToTop() { 
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'}); 
   }
+  const handlePagination = (event, value) => {
+    console.log(value);
+    console.log("handle page");
+    setActivePg(value);
+    scrollToTop();
+  } 
+  
   
 
   const getMovies = async() => {
@@ -54,7 +62,7 @@ const App = () => {
       setMsg("Please enter a keyword.")
       return;
     }
-
+    setMsg('')
     console.log(query)
     console.log(activePg)
     const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}&page=${activePg}&include_adult=false`);
