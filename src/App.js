@@ -94,8 +94,8 @@ const App = () => {
       <h1 className = 'Title' ><b>Find your movies</b></h1>
 
       <form className = "search-form" onSubmit = {getSearch}>
-          <input className = "search-bar" type="text" placeholder="Enter Movie Name" value = {search} onChange = {updateSearch}/> 
-        <button className = "search-button" type = 'submit'>
+          <input className = "search-bar" data-testid = "search-bar" type="text" placeholder="Enter Movie Name" value = {search} onChange = {updateSearch}/> 
+        <button className = "search-button" data-testid = "search-button" type = 'submit'>
           Search
         </button>
       </form>

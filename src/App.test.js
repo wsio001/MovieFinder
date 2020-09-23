@@ -2,8 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+it("render correclty", ()=>{
+  const {queryByTestId, queryPlaceholderName} = render(<App/>)
+  
+  expect(queryByTestId("search-button")).toBeTruthy();
+  expect(queryByTestId("search-bar")).toBeTruthy();
+})
